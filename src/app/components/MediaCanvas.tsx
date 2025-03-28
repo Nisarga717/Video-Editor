@@ -115,7 +115,7 @@ export const MediaCanvas: React.FC<MediaCanvasProps> = ({
     setCurrentSize(dimensions);
   }, [dimensions]);
 
-  const handleResize = (event: any, { size }: { size: { width: number; height: number } }) => {
+  const handleResize = (event: unknown, { size }: { size: { width: number; height: number } }) => {
     const constrainedWidth = Math.max(50, Math.min(size.width, 1920));
     const constrainedHeight = Math.max(50, Math.min(size.height, 1080));
 
