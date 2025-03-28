@@ -5,7 +5,7 @@ import { LeftSidebar } from '../components/leftSidebar';
 import { MediaCanvas } from '../components/MediaCanvas';
 import useMediaEditor from '../hooks/useMediaEditor';
 import { useRef, useState, useEffect } from 'react';
-import { Play, Pause, RotateCcw, Scissors, Crop, Upload } from 'lucide-react';
+import { Play, Pause, RotateCcw, Scissors, Upload } from 'lucide-react';
 
 export default function VideoEditor() {
   const {
@@ -21,30 +21,15 @@ export default function VideoEditor() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
-  
   const [isMediaPlaying, setIsMediaPlaying] = useState(false);
 
   const handleLoadedMetadata = () => {
     if (videoRef.current) {
       const videoDuration = videoRef.current.duration;
-      setDuration(videoDuration);
       updateTimeConfig({
         startTime: 0,
         endTime: videoDuration
       });
-    }
-  };
-
-  const handleSeek = (time: number) => {
-    if (videoRef.current) {
-      const clampedTime = Math.max(
-        timeConfig.startTime, 
-        Math.min(time, timeConfig.endTime)
-      );
-      
-      videoRef.current.currentTime = clampedTime;
-      setCurrentTime(clampedTime);
     }
   };
 
@@ -199,10 +184,3 @@ export default function VideoEditor() {
     </Container>
   );
 }
-
-// Utility function to format time (kept for potential future use)
-const formatTime = (seconds: number): string => {
-  const mins = Math.floor(seconds / 60);
-  const secs = Math.floor(seconds % 60);
-  return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-};
