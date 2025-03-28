@@ -1,0 +1,13 @@
+.editorContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .mediaCanvas {
+    border: 2px dashed #ddd;
+    min-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
